@@ -1,0 +1,36 @@
+                                                Intro to Python
+Vocabulary ->
+    + Python interpreter: Computer program that executes code written in Python language.
+    + Interactive interpreter: Program that allows the user to execute one line of code at a time.
+    + Console (terminal): text-based interface that allows user to run programs, enter input, and view output.
+    + Command-line interface: allows user to enter commands to run programs and work with files.
+
+.......................................................................................................................
+Subject-> Output and Inputs
+
+Outputs ->
+
+    print("..............") | print(variable_name) | print(variable_name, "...", variable_name)
+
+    + Each print statement starts on a new line.
+    + Each line does NOT end in semi-colon (;).
+    + Output can be moved to the next line using the (\n) new line character.
+    + Single output lines with multiple strings and variables are separated by commas (,).
+        - A space character is automatically added between each string/variables.
+    + (#) is used to provide comments on lines.
+
+    print("Hello there.", end=" ")  | Output: Hello there. My name is Armando.
+    print("My name is Armando.")    |
+
+    + Keep the output on the same line per print() by placing (end=" ").
+
+Inputs ->
+
+    best_friend = input() | number = int("15") | hourlyWage = int(input("Enter hourly wage: "))
+
+    + The (input()) function will read text from user input and assign it to the variable.
+    + By default, reading from input results in String type.
+        - insert type function before input() to change input String into Integer.
+    + Adding a string inside the parenthesis of input() displays prompt to the user before waiting for input.
+
+.......................................................................................................................
