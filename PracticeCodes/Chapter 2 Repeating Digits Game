@@ -1,0 +1,33 @@
+# Chapter: 2 Variables and Expressions
+# Title: Number Games
+
+"""
+Description: Repeating digits game
+
+Several math games manipulate numbers in simple ways that yield fun results.
+Below is a program that takes any given two-digit number and outputs a six-digit number, repeating the two digits.
+Ex: 24 becomes 242424.
+
+Takes a three-digit number and generates a six-digit number with the three-digit number repeated.
+Ex: 391 becomes 391391.
+    -> The rule is to multiply the three-digit number by 7*11*13.
+
+Takes a five-digit number and generates a ten-digit number with the five-digit number repeated.
+Ex: 49522 becomes 4952249522.
+    -> The rule is to multiply the five-digit number by 11*9091.
+"""
+
+# 2 digit number
+num = int(input("Enter 2 digit number: "))
+result = num * (3 * 7 * 13 * 37)
+print(result)
+
+# 3 digit number
+num_two = int(input("Enter 3 digit number: "))
+result = num_two * (7 * 11 * 13)
+print(result)
+
+# 5 digit number
+num_three = int(input("Enter a 5 digit number: "))
+result = num_three * (11 * 9091)
+print(result)

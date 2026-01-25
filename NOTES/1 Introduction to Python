@@ -4,6 +4,7 @@ Vocabulary ->
     + Interactive interpreter: Program that allows the user to execute one line of code at a time.
     + Console (terminal): text-based interface that allows user to run programs, enter input, and view output.
     + Command-line interface: allows user to enter commands to run programs and work with files.
+    + Programmers write code in Script files (.py) then run the files using the Python interpreter.
 
 .......................................................................................................................
 Subject-> Output and Inputs

@@ -1,0 +1,228 @@
+                                            Variables and Expressions
+Vocabulary ->
+    + Variable: Named location in memory that stores a value.
+    + Assignment statement: Code that assigns a value to a variable using the equal sign (=).
+    + Mutability: Ability of a variable to change its value during program execution.
+    + Immutability: Inability of a variable to change its value during program execution.
+    + Module: File containing Python code that defines functions, classes, and variables.
+
+.......................................................................................................................
+Subject -> Identifiers and Naming Conventions
+    + (name) is a sequence of letters, underscores and digits that represents a variable.
+    + Rules for naming variables:
+        - Must begin with a letter (a-z, A-Z) or underscore (_).
+        - Remaining characters can be letters, digits (0-9), or underscores (_).
+    + Pyhon style guideline:
+        - Use lowercase letters and separate words with underscores (_).
+    + Avoid Python 3 reserved words:
+        False      await      else       import     pass
+        None       break      except     in         raise
+        True       class      finally    is         return
+        and        continue   for        lambda     try
+        as         def        from       nonlocal   while
+        assert     del        global     not        with
+        async      elif       if         or         yield
+
+.......................................................................................................................
+Subject -> Object
+    + Printing the type of object using type() function.
+        - print(type(variable_name)).
+    + Identity: normally refers to the memory address where the object is stored.
+        - Use id() function to give the value of an objects identity.
+        - print(id(variable_name)).
+
+.......................................................................................................................
+Subject -> Floating-point numbers and Scientific Notation
+    + Real number: 98.0, 0.00001, -3.14
+    + "Floating-point" refers to decimal point appearing anywhere in number.
+    + Data type: float
+    + Scientific notation is useful for representing floating-point numbers much greater or less than 0.
+        - 6.02 x 10^23
+    + Floating_point literal is written using an "e" (exponents) preceding the power  of 10.
+        - Example: 6.02e23 represents 6.02 x 10^23
+        - Example: 1.6e-19 represents 1.6 x 10^-19
+
+    Manipulating Floating-point numbers:
+    + Syntax: (f" {piNumber: .2f} ") | .2f outputs two decimal places. -> Output: 3.14
+        - f-string: formatted string literal that allows embedding expressions inside string literals.
+        - (:) indicates start of format spec.
+        - (.2f) indicates floating-point number with 2 decimal places.
+.......................................................................................................................
+Subject -> Arithmetic Operations
+    + Addition (+): adds two numbers.
+    + Subtraction (-): subtracts second number from first.
+    + Multiplication (*): multiplies two numbers.
+    + Division (/): divides first number by second, result is float.
+    + Floor Division (//): divides first number by second, result is rounded down to nearest integer.
+    + Modulus (%): returns remainder of division of first number by second.
+    + Exponentiation (**): raises first number to the power of second number.
+
+    Order of Operations (PEMDAS):
+        1. Parentheses
+        2. Exponents
+        3. Multiplication and Division (left to right)
+        4. Addition and Subtraction (left to right)
+
+    Examples:
+        + 3 + 5 * 2 -> Output: 13
+        + (3 + 5) * 2 -> Output: 16
+        + 10 / 4 -> Output: 2.5
+        + 10 // 4 -> Output: 2
+        + 10 % 4 -> Output: 2
+        + 2 ** 3 -> Output: 8
+.......................................................................................................................
+Subject -> Division and Modulo
+    Division (/):
+        + Always results in a floating-point number.
+        + Example: 7 / 2 -> Output: 3.5
+    Floor Division (//):
+        + Results in the largest integer less than or equal to the division result.
+        + Example: 7 // 2 -> Output: 3
+    Modulo (%):
+        + Returns the remainder of the division of the first number by the second.
+        + Example: 7 % 2 -> Output: 1
+        Getting digits example:
+            + number = 753
+            + last_digit = number % 10          -> Output: 3
+            + middle_digit = (number // 10) % 10 -> Output: 5
+            + first_digit = number // 100        -> Output: 7
+
+.......................................................................................................................
+Subject -> Modules
+    + Script: file containing Python code that is intended to be executed as a program.
+    + Module: file containing Python code that defines functions, classes, and variables.
+    + Importing a module using import statement.
+        - Syntax: import module_name
+        Example:
+            module file: names.py                      | Script file: print_names.py
+            ----------------------                     | ----------------------
+            first = "Armando"                          | import names
+            last = "Sarza"                             | print(names.first, end=" ")
+                                                       | print(names.last)
+            ----------------------                     | ----------------------
+            Output: Armando Sarza
+
+        - Accessing module attributes using dot notation.
+            Example: module_name.attribute_name
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+-> Importing modules versus Executing scripts
+
+# =========================                                     | # =========================
+# file: pet_names.py                                            | # file: favorite_pets.py
+# =========================                                     | # =========================
+                                                                | # Importing runs pet_names.py top to bottom once
+print("Initializing pet variables...")                          | import pet_names
+                                                                |
+pet_name1 = "Ryder"                                             | print("My fave pet is:", pet_names.pet_name1, "-")
+pet_name2 = "Jess"                                              | print("Another fave pet is:", pet_names.pet_name2, "-")
+pet_weight1 = 5.1                                               | print("They were born weighing", pet_names.pet_weight1, "lbs")
+pet_weight2 = 8.5                                               | print("and", pet_names.pet_weight2, "lbs respectively.")
+                                                                |
+# Runs only if YOU run this file directly:                      |
+#   python pet_names.py                                         |
+if __name__ == "__main__":                                      |
+    print("Pet 1:", pet_name1, "was born", pet_weight1, "lbs")  |
+    print("Pet 2:", pet_name2, "was born", pet_weight2, "lbs")  |
+------------------------------------------------------------------------------------------------------------------------
+Output when running pet_names.py                                | Output when running favorite_pets.py
+--------------------------------                                | ------------------------------------
+Initializing pet variables...                                   | Initializing pet variables...
+Pet 1: Ryder was born 5.1 lbs                                   | My fave pet is: Ryder -
+Pet 2: Jess was born 8.5 lbs                                    | Another fave pet is: Jess -
+                                                                | They were born weighing 5.1 lbs
+                                                                | and 8.5 lbs respectively.
+.......................................................................................................................
+Subject -> Math Module
+    + Syntax for importing math module: import math
+    + Common math module functions:
+        Function            |Description            |Function           |Description
+        --------------------|-----------------------|-------------------|-----------------------
+        # NUMBER REPRESENTATION AND THEORETIC FUNCTIONS
+        ceil(x)             |Smallest integer ≥ x   |floor(x)           |Largest integer ≤ x
+        factorial(n)        |n! (factorial of n)    |fabs(x)            |Absolute value of x
+        fmod(x, y)          |Remainder of x / y     |fsum(x)            |Accurate floating sum
+        # POWER, EXPONENTIAL AND LOGARITHMIC FUNCTIONS
+        exp(x)              |e^x                    |log(x[, base])     |Logarithm of x to given base
+        pow(x, y)           |x raised to power y    |sqrt(x)            |Square root of x
+        # TRIGONOMETRIC FUNCTIONS
+        sin(x)              |Sine of x (radians)    |cos(x)             |Cosine of x (radians)
+        tan(x)              |Tangent of x (radians) |asin(x)            |Inverse sine of x
+        atan(x)             |Inverse tangent of x   |atan2(y, x)        |Inverse tangent of y
+        hypot(x, y)         |√(x² + y²)             |degrees(x)         |Convert radians to degrees
+        radians(x)          |Convert degrees to rad |acos(x)            |Inverse cosine of x
+        cosh(x)             |Hyperbolic cosine      |sinh(x)            |Hyperbolic sine
+        #COMPLEX NUMBER FUNCTIONS
+        gamma(x)            |Gamma function         |erf(x)              |Error function
+        # MATHEMATICAL CONSTANTS
+        pi                  |3.141592653589793      |e                   |2.718281828459045
+        --------------------|-----------------------|-------------------|-----------------------
+
+.......................................................................................................................
+Subject -> Random Numbers
+    Generating a random number:
+        + Import: random
+        + Syntax: print(ran_number.random())
+        + Returns a random floating-point value each time the function is called between 0.0 and 1.0.
+    Restricting the range of random numbers:
+        + Syntax: print(random.randrange(intNum)
+        + Returns a random integer between 0 and intNum - 1. (-1 because range begins at 0)
+            - random.randrange(20) returns a random number between 0 and 19.
+            - random.randrange(45) returns 44 as the highest possible number.
+     Defined Ranges:
+        + randint(min, max) -> returns a random integer between min and max (inclusive).
+            - random.randint(12, 20) returns a random number between 12 and 20, including both 12 and 20.
+        + randrange(min, max) -> returns a random integer between min and max (exclusive of max).
+            - random.randrange(12, 20) returns a random number between 12 and 19, excluding 20.
+     Pseudo-random:
+        + Random numbers generated by computer algorithms are called pseudo-random numbers.
+            - random.seed(value) initializes the random number generator with a specific seed value.
+            - Using the same seed value will produce the same sequence of random numbers.
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Example: Randomly moving a student
+
+    import random
+
+    # This is how python multi-line comments are done
+    """
+    Switch a student from a random seat on the left  (cols 1 to 15)
+    to a random seat on the right (cols 16 to 30)
+    Seat rows are 1 to 20
+    """
+
+    rowNumLeft = random.randint(1, 20)      # 1 to 20 rows left
+    colNumLeft = random.randint(1, 15)      # 1 to 15 cols left
+    rowNumRight = random.randint(1, 20)     # 1 to 20 rows right
+    colNumRight = random.randint(16, 30)    # 16 to 30 cols right
+
+    print("Moving student from (", rowNumLeft, ",", colNumLeft, ") to (", rowNumRight, ",", colNumRight, ")")
+
+    Output: Moving student from ( 7 , 12 ) to ( 3 , 27 )
+
+.......................................................................................................................
+Subject -> Representing Text
+    Escape sequences:
+        + Special characters that represent certain whitespace or non-printable characters.
+        + Begin with a backslash (\) followed by a character.
+        + Common escape sequences:
+            Escape Sequence | Description               | Example                                   | Output
+            ----------------|---------------------------|-------------------------------------------|----------------------------------
+            \n              | New line                  | Example: print("Hello\nWorld")            |
+            \t              | Tab                       | Example: print("Hello\tWorld")            | Hello    World
+            \\              | Backslash                 | Example: print("This is a backslash: \\") | This is a backslash: \
+            \'              | Single quote              | Example: print('It\'s a nice day')        | It's a nice day
+            \"              | Double quote              | Example: print("He said, \"Hello\"")      | He said, "Hello"
+            \b              | Backspace                 | Example: print("Hello\bWorld")            | HellWorld
+        + Raw strings:
+            - Prefix string with 'r' or 'R' to treat backslashes as literal characters.
+            - Example: print(r"C:\Users\Name") -> Output: C:\Users\Name
+
+.......................................................................................................................
+Subject -> Style Guidelines
+    + Sub-statements are indented four spaces from the main statement.
+        - if a < b:
+                print("a is less than b")
+    + Variable/Parameter and function names are snake_cases starting with lowercase.
+    + Constants use upper case and underscores (and at least two words).
+        - MAX_SPEED = 100
+    + Class names are CamelCase with uppercase first.
+        - class StudentRecord:
