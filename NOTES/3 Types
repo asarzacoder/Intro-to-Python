@@ -1,0 +1,180 @@
+                                                    TYPES
+.......................................................................................................................
+.......................................................................................................................
+Functions associated with strings ->
+
+    Function                    | Purpose                               | Example
+    ---------------------------------------------------------------------------------------------------------------
+    len()                       | Find the length or the number of char | print (len(first_name))
+                                | in a string                           |
+.......................................................................................................................
+
+TOPIC (1): STRING BASICS
+
+    Vocabs:
+    -----------------------------------------------------------------------------------------------
+    + String literal: string defined in the source code of a program by surrounding the text with
+        single or double quotes.
+    + Index: A character's position in a string.
+    + Concatenation: Adding new characters to the end of a string.
+    -----------------------------------------------------------------------------------------------
+
+    + ASSIGNING a variable with a string
+        first_name = "Armando"
+
+    + Getting INPUT from user into a variable
+        first_name = input("Enter your first name") or first_name = input()
+
+    + Programmers can access a strings index by appending brackets[] containing the desired index.
+        - A negative index starts from the end of the string.
+        ACCESSING string index -> first_name[0] = A
+
+    + Changing string variables
+        - Strings are immutable objects and a string variable cannot change once created.
+            first_name[0] = "C"     # Does not work and will cause an error.
+        - You must replace the old string by doing an assignment statement.
+            first_name = "Elena"    # Old: Armando  New: Elena
+
+    + Concatenating strings
+        - A programmer can add characters to the end of a string in a process known as string concatenation.
+            "New" + "York" = NewYork
+        - The "+" concatenation operator can be used multiple times in a single operations.
+        - Concatenation can only include string objects and cannot do integer type.
+            - A programmer must convert the int to string using str() function.
+                address = str(32) + " Main Street "
+
+.......................................................................................................................
+
+TOPIC (2): STRING FORMATTING
+
+    Vocabs:
+    -----------------------------------------------------------------------------------------------
+    + Formatted String Literal or f-string: Allows programmer to create a string with placeholder
+        expressions that are evaluated as the program executes.
+    + Placeholder Expression: Called a replacement field, as its value replaces the expression in
+        the final output.
+    + Format Specification: allows a value's formatting in the string to be customized.
+    -----------------------------------------------------------------------------------------------
+
+    + F-String (Formatted String Literal)
+        - Starts with an f character before the starting quote and uses curly braces { } to denote the
+          placeholder expressions.
+        - Placeholder expression also known as replacement field.
+
+        print(f"{number} drinks cost ${amount}"} -> 2 drinks cost $10.25
+
+        + Additional f-string features:
+            = : provided after the expression in replacement field to print both expression and its result.
+                f"{2*4=} -> 2*4=8
+            { {} } : double braces used to place a curly brace into an f-string.
+                f"{ {Armando Sarza} }: student" -> {Armando Sarza}:student
+
+    + Format specification
+        - A variable with the integer value of 4 can be outputted as a floating-point (4.0).
+        - introduced with a colon : in the replacement field.
+
+        4:.2f -> 4.00
+
+        - Presentation Type is part of format specification that determines how to represent a value in text form.
+            integer -> 4
+            floating-point -> 4.0
+            fixed precision decimal -> 4.000
+            percentage -> 4%
+            binary -> 100
+           + can be set in a replacement field by inserting a colon : and providing one of the representation type
+             characters.
+
+    Type        | Description                           | Code                          | Output
+    --------------------------------------------------------------------------------------------------------------
+    s           | String (default)                      | print(f"{name:S}")            | Armando
+    --------------------------------------------------------------------------------------------------------------
+    d           | Decimal (integer values only)         | print(f"{number:d}")          | 4
+    --------------------------------------------------------------------------------------------------------------
+    ,d          | Decimal (integer values with commas)  | print(f"{number:,d}")         | 7,400
+    --------------------------------------------------------------------------------------------------------------
+    0[width]d   | leading 0 notation                    | print(f"{number:03d}")        | 005
+    --------------------------------------------------------------------------------------------------------------
+    b           | binary (integer values only)          | print(f"{number:b}")          | 100
+    --------------------------------------------------------------------------------------------------------------
+    x, X        | Hexadecimal in lowercase(x)           | print(f"{number:x}")          | 1f
+                | and uppercase(X) (integer values only)|                               |
+    --------------------------------------------------------------------------------------------------------------
+    e           | Exponent notation                     | print(f"{number:e}")          | 4.400000e+01
+    --------------------------------------------------------------------------------------------------------------
+    f           | Fixed-point notation                  | print(f"{number:f}")          | 4.000000
+                | (Six places of precision)             |                               |
+    --------------------------------------------------------------------------------------------------------------
+   .[precision]f| Fixed-point notation                  | print(f"{number:.2f}")        | 4.00
+                | (Programmer defined precision)        |                               |
+    --------------------------------------------------------------------------------------------------------------
+    ,.          | Fixed-point notation                  | print(f"{number:,.2f}")       | 7,400.10
+    [precision]f| (Programmer defined precision w/ com. |                               |
+
+.......................................................................................................................
+
+TOPIC: LIST BASICS (3)
+
+    Vocabs:
+    -----------------------------------------------------------------------------------------------
+    + Container: construct used to group related values together and contains references to other
+        objects instead of data.
+    + List: a container created by surrounding a sequence of variables or literals with brackets [].
+    + Sequence-type methods: functions built into the Python language definitions of sequence types
+        like lists and strings.
+    + Sequence-type functions: built into the Python language that take sequences like lists or
+        strings as arguments and operate on the given sequences.
+    -----------------------------------------------------------------------------------------------
+
+    + Creating a list
+
+        my_list = [10, "abc"]
+
+        - creates a new list variable my_list that contains the two items 10 and "abc".
+        - a list item is called an element.
+        - a list is mutable, meaning that th elements in list can be replaced, reordered, or removed.
+        - a list is also a sequence type, meaning the contained elements are ordered by position in the
+            list, known as the elements index.
+
+        + Accessing a list
+
+            - list can be access using an indexing expression by using brackets: my_list[i]
+
+        + Updating list elements
+
+            - An element can be updated simply by performing an assignment to a position in the list: my_list[0] = "changed".
+
+        + Adding list elements
+
+            - .append() list method is used to add new elements to a list.
+
+                list.append(value): adds value to the end of list.
+
+        + Removing elements from a list
+
+            - pop() or remove() can be used to remove an element from the list.
+
+                list.pop(i): removes the element at index i from the list.
+
+                list.remove(v): removes the first element whose value matches.
+
+    Function          | Purpose
+    ----------------------------------------------------------------------------------------------------------------
+    len(list)         | Find the length of the list.
+    ----------------------------------------------------------------------------------------------------------------
+    list1 + list2     | Produce a new list by concatenating list2 to the end of list1
+    ----------------------------------------------------------------------------------------------------------------
+    min(list)         | Find the element in the list with the smallest value. All elements must be of the same type.
+    ----------------------------------------------------------------------------------------------------------------
+    max(list)         | Find the element in the list with the largest value. All elements must be of the same type.
+    ----------------------------------------------------------------------------------------------------------------
+    sum(list)         | Find the sum of all elements of a list (numbers only).
+    ----------------------------------------------------------------------------------------------------------------
+    list.index(val)   | Find the index of the first element in the list whose value matches val.
+    ----------------------------------------------------------------------------------------------------------------
+    list.count(val)   | Count the number of occurrences of the value val in the list.
+
+               
+
+
+
+
