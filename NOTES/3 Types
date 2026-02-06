@@ -1,13 +1,5 @@
                                                     TYPES
 .......................................................................................................................
-.......................................................................................................................
-Functions associated with strings ->
-
-    Function                    | Purpose                               | Example
-    ---------------------------------------------------------------------------------------------------------------
-    len()                       | Find the length or the number of char | print (len(first_name))
-                                | in a string                           |
-.......................................................................................................................
 
 TOPIC (1): STRING BASICS
 
@@ -159,15 +151,15 @@ TOPIC: LIST BASICS (3)
 
     Function          | Purpose
     ----------------------------------------------------------------------------------------------------------------
-    = len(list)         | Find the length of the list.
+    = len(list)       | Find the length of the list.
     ----------------------------------------------------------------------------------------------------------------
     list1 + list2     | Produce a new list by concatenating list2 to the end of list1
     ----------------------------------------------------------------------------------------------------------------
-    = min(list)         | Find the element in the list with the smallest value. All elements must be of the same type.
+    = min(list)       | Find the element in the list with the smallest value. All elements must be of the same type.
     ----------------------------------------------------------------------------------------------------------------
-    = max(list)         | Find the element in the list with the largest value. All elements must be of the same type.
+    = max(list)       | Find the element in the list with the largest value. All elements must be of the same type.
     ----------------------------------------------------------------------------------------------------------------
-    = sum(list)         | Find the sum of all elements of a list (numbers only).
+    = sum(list)       | Find the sum of all elements of a list (numbers only).
     ----------------------------------------------------------------------------------------------------------------
     list.index(val)   | Find the index of the first element in the list whose value matches val.
     ----------------------------------------------------------------------------------------------------------------
@@ -225,9 +217,180 @@ TOPIC: Tuple Basics (4)
         print(chevy_impala)
             output: Car(make="Chevrolet", model="Impala", price=37495, horsepower=305, seats=5)
 
+.......................................................................................................................
 
-               
+TOPIC: SET BASICS (5)
+
+    Vocabs:
+    -----------------------------------------------------------------------------------------------
+    + Set: unordered collection of unique elements.
+    -----------------------------------------------------------------------------------------------
+
+    Properties of a set ->
+        + Elements are unordered. Elements in the set do not have a position or index.
+        + Elements are unique. No elements in the set share the same value.
+
+    Creating a set -> set()
+        + Accepts a sequence type iterable object (list, tuple, string, etc.)
+        + Set literal can be written using curly braces { } with commas separating set elements.
+        + An empty set can be created using set().
+
+        Example:
+            Create set with set() function -> nums1 = set([1, 2, 3])        Output: {1, 2, 3}
+            Create set using set literal   -> nums2 = {7, 8, 9}             Output: {7, 8, 9}
+
+!!! Because the elements of a set are unordered and have no meaningful position, the index operator is not valid !!!
+
+- A set is often used to reduce a list of items that potentially contains duplicates into a collection of unique values.
+- Simply passing a list into set() will cause any duplicates to be omitted in the created set.
+
+    Modifying sets ->
+        + Sets are mutable - elements can be added or removed using set methods.
+
+    Function          | Purpose
+    ----------------------------------------------------------------------------------------------------------------
+    len(set)          | Find the length (number of elements) of the set.
+    ----------------------------------------------------------------------------------------------------------------
+    set1.update(set2) | Adds the elements in set2 to set1.
+    ----------------------------------------------------------------------------------------------------------------
+    set.add(value)    | Adds value into the set.
+    ----------------------------------------------------------------------------------------------------------------
+    set.remove(value) | Removes value from the set. Raises KeyError if value is not found.
+    ----------------------------------------------------------------------------------------------------------------
+    set.pop()         | Removes a random element from the set.
+    ----------------------------------------------------------------------------------------------------------------
+    set.clear()       | Clears all elements from the set.
+    ----------------------------------------------------------------------------------------------------------------
+
+    Set Operations ->
+        Python set objects support typical set theory operations such as intersections and unions.
+
+    Operation                                | Purpose
+    ----------------------------------------------------------------------------------------------------------------
+    set.intersection(set_a, set_b, set_c...) | Returns a new set containing only the elements in common between set and
+                                             | all provided sets.
+    ----------------------------------------------------------------------------------------------------------------
+    set.union(set_a, set_b, set_c...)        | Returns a new set containing all of the unique elements in all sets.
+    ----------------------------------------------------------------------------------------------------------------
+    set.difference(set_a, set_b, set_c...)   | Returns a set containing only the elements of set that are not found in
+                                               any of the provided sets.
+    ----------------------------------------------------------------------------------------------------------------
+    set_a.symmetric_difference(set_b)        | Returns a set containing only elements that appear in exactly one of
+                                               set_a or set_b.
+    ----------------------------------------------------------------------------------------------------------------
+
+.......................................................................................................................
+
+TOPIC: DICTIONARY BASICS (6)
+
+    Vocabs:
+    -----------------------------------------------------------------------------------------------
+    + Dictionary: Python container used to describe associative relationships.
+        - Represented by the dict object type.
+    + Key: term that can be located in a dictionary.
+        - Can be any immutable type (number, string or tuple).
+    + Value: describes some data associated with a key, such as a definition.
+        - Can be any type.
+    -----------------------------------------------------------------------------------------------
+
+DICTIONARY ->
+    Object created using curly braces { } to surround the key:value pairs.
+
+    Example:                                Output:
+
+        players = {                        |   {"Lionel Messi": 10, "Cristiano Ronaldo": 7}
+            "Lionel Messi": 10,            |
+            "Cristiano Ronaldo": 7         |
+        }
+
+    -------------------------------------------------
+    Accessing dictionary entries (can't use indexes)
+    -------------------------------------------------
+        + Access entry, key is specified in brackets[].
+        + If no entry with a matching key exists in the dictionary, KeyError runtime error occurs and program
+          is terminated.
+
+    Example:                                                 Output:
+        prices = {"apples": 1.99, "oranges": 1.49}          |
+                                                            |   The price of apples is 1.99
+        print(f"The price of apple is {prices['apples']}")  |
+
+    --------------------------------------------------------
+    Adding, Modifying, and Removing (dictionary is mutable)
+    --------------------------------------------------------
+
+        Adding new entries -> prices["raisins"] = 2.13
+            * Attempting to create a new entry with a key that already exists in the dictionary replaces existing entry.
+
+        Modifying existing entries -> prices["raisins"] = 2.25
+            * Updates the existing entry.
+
+        Removing entries -> del prices["raisins"]
+            * If the requested key to delete does not exist, KeyError occurs.
+
+.......................................................................................................................
+
+TOPIC: COMMON DATA TYPES
+
+    TYPE   | NOTES: NUMERIC DATA TYPES
+    -----------------------------------------------------------
+    int    | Numeric: Used for variable-width integers
+    -----------------------------------------------------------
+    float  | Numeric: Used for floating-point numbers
 
 
+    SEQUENCE TYPE NOTES
+        + string, list, tuples are containers of collections of objects ordered by position where it can be
+          accessed with index.
+        + list is mutable and individual elements may be edited or removed.
+        + tuple is immutable and individual elements may not be edited or removed.
+            - list and tuple can contain any type.
+            - can apply len() and element indexing using brackets []
+        + dictionary serves as a container. Each element is independent having no special ordering or relation
+          to other elements. Dictionary uses key-value pairs to associate a key with a value.
 
+    TYPE   | NOTES: SEQUENCE and MAPPING TYPES
+    -----------------------------------------------------------
+    string | Sequence: Used for text
+    -----------------------------------------------------------
+    list   | Sequence: mutable container with ordered elements
+    -----------------------------------------------------------
+    tuple  | Sequence: Immutable container with ordered elements
+    -----------------------------------------------------------
+    set    | Set: mutable container with unordered and unique elements
+    -----------------------------------------------------------
+    dictionary | Mapping: container with key-values assoc. elements
+
+CHOOSING CONTAINER TYPE
+
+    LIST -> when data has an order, such as lines of text on a page
+
+    TUPLE -> if contained data should not change.
+
+    DICTIONARY -> if order is not important, capture relationships between elements such as
+                  student names and grades.
+
+.......................................................................................................................
+
+TOPIC: TYPE CONVERSIONS
+
+    Vocabs:
+    -----------------------------------------------------------------------------------------------
+    + Type conversion: conversion of one type to another (integer to float).
+    + Implicit conversion: type conversion automatically made by the interpreter.
+        - 1 + 2 returns an integer
+        - 1 + 2.0 returns a float
+        - 1.0 + 2.0 returns a float
+        - integer to float conversion is straightforward: 25 -> 25.0
+        - float to integer drops the fraction: 4.9 -> 4
+        - strings can be converted to numeric type as long as they follow the correct formatting
+    -----------------------------------------------------------------------------------------------
+
+    TYPE    | NOTES:                 | CAN CONVERT:
+    -----------------------------------------------------------------------------------------------
+    int()   | Creates Integers       | integer, float, strings w/ integers only
+    -----------------------------------------------------------------------------------------------
+    float() | Creates floats         | integer, float, strings w/ integers or fractions
+    -----------------------------------------------------------------------------------------------
+    str()   | Creates strings        | ANY
 
