@@ -1,0 +1,89 @@
+                                                    BRANCHING
+
+TOPIC: IF-ELSE STATEMENT
+
+    Vocabs:
+    -----------------------------------------------------------------------------------------------
+    + Equality operator: (==) evaluates TRUE if the left and right side are equal.
+        - Statements in the branch must be indented, typically 4 spaces.
+    + Inequality Operator: (!=) meaning not equal.
+    -----------------------------------------------------------------------------------------------
+
+    IF -> executes one group of statements when an expression is true.
+    ELSE -> another group of statements when the expression is false.
+
+    if name == "Armando":       |   name = "Armando"
+        1st execution           |
+    else:                       |
+        2nd execution           |
+
+Multi_branch if-else statement -
+    + An if-else statement can be extended to have 3 of more branches by using if -> elif -> else!
+        - elif means else-if.
+    + Each branch expression is checked in sequence. As soon as one branch expression found to be true,
+      that branch will execute.
+    + If no expression is True, the else branch executes.
+
+    if expression1:
+        statements for first branch
+    elif expression2:
+        statements for second branch
+    else:
+        statements for else branch
+
+.......................................................................................................................
+
+TOPIC: DETECTING RANGES WITH BRANCHES
+
+Relational Operators -
+
+    -----------------------------------------------------------------------------------------------
+    + Relational Operator: checks how one operand's value relates to another (< | > | ==)
+    -----------------------------------------------------------------------------------------------
+
+    Relational Operator | Description                                   | Example (x = 3)
+    ----------------------------------------------------------------------------------------------------------------
+            <           | a < b means a is less than b                  | x < 4 (true) | x < 3 (false)
+    ----------------------------------------------------------------------------------------------------------------
+            >           | a > b means a is greater than b               | x > 2 (true) | x > 3 (false)
+    ----------------------------------------------------------------------------------------------------------------
+            <=          | a <= b means a is less than or equal to b     | x <= 4 (true) | x <= 3 (true) | x <= 2 (false)
+    ----------------------------------------------------------------------------------------------------------------
+            >=          | a >= b means a is greater than or equal to b  | x >= 2 (true) | x >= 3 (true) | x >= 4 (false)
+    ----------------------------------------------------------------------------------------------------------------
+
+Operator Chaining - Python supports operator chaining.
+
+    | a < b < c |: Chaining performs comparisons left to right.
+        + Evaluating a < b (if result is true) b < c (evaluated next)
+        + If the first comparison results to false, no need for next evaluation.
+        + a is not compared to c.
+
+.......................................................................................................................
+
+TOPIC: LOGICAL OPERATORS
+
+    -----------------------------------------------------------------------------------------------
+    + Logical operator: treats operands as being True or False.
+        - Includes AND, OR, NOT.
+    + Boolean: refers to a value that is either true or false.
+        - True and False are keywords and must be capitalized.
+    -----------------------------------------------------------------------------------------------
+
+    Logical Operator    |   Description
+    ----------------------------------------------------------------------------------------------------------------
+        a and b         | AND: True when both of its operands are TRUE.
+    ----------------------------------------------------------------------------------------------------------------
+        a or b          | OR: True when at least one of its two operands are TRUE.
+    ----------------------------------------------------------------------------------------------------------------
+        not a           | NOT: True when its one operand is FALSE, vice versa.
+    ----------------------------------------------------------------------------------------------------------------
+
+    Example:
+
+        if (statement):
+            print("....")
+        elif (statement) and (statement):
+            print("....")
+        else:
+            print("....")
