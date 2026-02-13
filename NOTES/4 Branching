@@ -87,3 +87,68 @@ TOPIC: LOGICAL OPERATORS
             print("....")
         else:
             print("....")
+
+.......................................................................................................................
+
+TOPIC: MEMBERSHIP AND IDENTITY OPERATORS
+
+    -----------------------------------------------------------------------------------------------
+    + Membership operators (in/not in) yield True or False if left operand matches the value of an
+      element in the right operand, which is always a container.
+    -----------------------------------------------------------------------------------------------
+                                                EXAMPLE
+    -----------------------------------------------------------------------------------------------
+    | in                                            | not in                                      |
+    -----------------------------------------------------------------------------------------------
+    | names_in_class = ["Armando", "Mace", "Gian"]  | names_in_class = ["Armando", "Mace", "Gian"]|
+    |                                               |                                             |
+    | name = input("Input name")                    | name = input("Input name")                  |
+    | if name in names_in_class:                    | if name not in names_in_class:              |
+    |   print(f"Found {name} on roster.")           |   print(f"{name} not in roster.")           |
+    | else:                                         | else:                                       |
+    |   print(f"Not in roster.")                    |   print(f"Found {name} in roster.")         |
+    -----------------------------------------------------------------------------------------------
+
+    + SUBSTRINGS or matching subset of characters, of a larger string can be found using in/not in.
+
+        if "/1.1" in request_str:               |       if "HTTPS" not in request_str:
+            print("HTTP protocol 1.1")          |            print("Unsecured connection")
+
+    + DICTIONARY - membership in a dictionary (dict) implies that a specific key exists in the dictionary.
+        - Membership operator does not check values, just keys.
+
+        my_dict = {"A": 1, "B": 2, "C": 3}
+
+        if "B" in my_dict:
+            print("Found \"B\"")
+        else:
+            print("\"B\" not found")
+
+    + is/is not
+        - (is) checks if two variables point to the exam same object in memory.
+        - (is not) checks the opposite -> my_str is not my_list[2]
+            * is does NOT compare values!
+                - (==) compares values (contents)
+                - (is) compares identity (same object / memory spot)
+        - id() function can be used to retrieve the identifier of any object.
+            - x is y (true) --> id(x) == id(y)
+
+.......................................................................................................................
+
+TOPIC: ORDER OF EVALUATION
+
+    1. ()                   | Items within parentheses are evaluated first
+    2. * / % + -            | Arithmetic operators
+    3. < <= > >= == !=      | Relational, (in)equality, and membership operators
+    4. not                  | not (logical NOT)
+    5. and                  | Logical AND
+    6. or                   | Logical OR
+
+.......................................................................................................................
+
+TOPIC: CONDITIONAL EXPRESSIONS
+
+    if condition:                   <->             my_var = expr1 if (condition) else expr2
+        my_var = expr1
+    else:
+        my_var = expr2
