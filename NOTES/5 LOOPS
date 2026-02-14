@@ -1,0 +1,23 @@
+                                                LOOPS
+.......................................................................................................................
+
+TOPIC: WHILE LOOPS
+
+    Syntax:
+    -----------------------------------------------------------------------------------------------
+    while |expression|:
+        | Loop Body |
+
+    | Executional expressions after loop has been exited |
+    -----------------------------------------------------------------------------------------------
+
+    Vocabs:
+    -----------------------------------------------------------------------------------------------
+    + Sentinel Value: value that causes a loop to end.
+    + Infinite loop: loop never stops running because condition is always True.
+        - include greater than or less than along with equality in loop expression.
+    -----------------------------------------------------------------------------------------------
+
+
+
+
