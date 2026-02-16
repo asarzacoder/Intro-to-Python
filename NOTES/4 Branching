@@ -90,6 +90,21 @@ TOPIC: LOGICAL OPERATORS
 
 .......................................................................................................................
 
+TOPIC: Comparing Data Types and Common Errors
+
+    + Numbers are arithmetically compared.
+
+    + Strings are compared by converting each character to a number value (ASCII or Unicode),
+      and then comparing each character in order. (== | !=)
+
+    + Lists and Tuples: are compared via in ordered comparisons of every element in the sequence.
+      The result is determined by the first mismatching elements in the sequences.
+
+    + Dictionaries are compared only with == or !=. To be equal, two dictionaries must have the same set of keys
+      and the same corresponding value for each key.
+
+.......................................................................................................................
+
 TOPIC: MEMBERSHIP AND IDENTITY OPERATORS
 
     -----------------------------------------------------------------------------------------------
