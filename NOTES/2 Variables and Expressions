@@ -160,7 +160,7 @@ Subject -> Math Module
 .......................................................................................................................
 Subject -> Random Numbers
     Generating a random number:
-        + Import: random
+        + Import random
         + Syntax: print(ran_number.random())
         + Returns a random floating-point value each time the function is called between 0.0 and 1.0.
     Restricting the range of random numbers:

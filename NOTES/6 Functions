@@ -1,0 +1,225 @@
+                                                    FUNCTIONS
+.......................................................................................................................
+
+TOPIC: Functions Basic
+
+    NOTES:
+    -----------------------------------------------------------------------------------------------
+    + Function definition: consists of the functions name and a block of statements.
+        -> def calc_pizza_area:
+    + | def | keyword is used to create a new function.
+    + Functions call: invocation of the functions name, causing functions statements to execute.
+        -> calc_pizza_area()
+    + Return statement: a function may return only ONE value using return.
+        - A list or tuple with multiple elements could be returned.
+            -> return size * length
+        - No return value returns the value "None", indicating no value.
+        - return statement may appear at any point in a function, and can have multiple.
+
+    + Parameter: function input specified definition.
+        -> def calc_pizza_area(pizza_diameter)
+        -> def calc_pizza_area(pizza_diameter, pizza_height)
+    + Argument: value provided to a functions parameter during a function call.
+        -> calc_pizza_area(12.0)
+        -> calc_pizza_area(12.0, 13.0)
+    -----------------------------------------------------------------------------------------------
+
+.......................................................................................................................
+
+TOPIC: Printing From a Function
+
+    NOTES:
+    -----------------------------------------------------------------------------------------------
+    + Function that only prints typically does not return a value.
+    + Function with no return statement is called a void function, a function that returns "None".
+    -----------------------------------------------------------------------------------------------
+
+.......................................................................................................................
+
+TOPIC: Dynamic Typing
+
+    NOTES:
+    -----------------------------------------------------------------------------------------------
+    + Python uses dynamic typing to determine the type of objects as a program executes.
+    + You can call function using two integer arguments: add(5, 7)
+    + You can call function using two string arguments: add("Tora", "Bora") -> "ToraBora"
+
+    + Polymorphism: function behavior of adding together different types.
+        -> "x" * 5 = "xxxxx"
+    -----------------------------------------------------------------------------------------------
+
+.......................................................................................................................
+
+TOPIC: Function Stubs
+
+    NOTES:
+    -----------------------------------------------------------------------------------------------
+    + Function stubs: function definitions whose statements haven't been written yet.
+        - pass keyword: performs no operation except act as a placeholder for a required statement.
+            -> def calc_volume(radius):
+                  pass
+        - Print message adding FIXME for programmer to work on function later.
+        - Good practice is for stub to return -1 for functions with return values.
+            -> def steps_to_calories(steps):
+                  print("FIXME: finish function"
+                  return -1
+        - NotImplementedError: can be generated with the statement raise.
+            - indicates that the function is not implemented and causes the program to stop execution.
+            -> def get_points(num_points):
+                  raise NotImplementedError
+    -----------------------------------------------------------------------------------------------
+
+.......................................................................................................................
+
+TOPIC: Scope of variables and functions
+
+    NOTES:
+    -----------------------------------------------------------------------------------------------
+    + variable or function object is only visible to part of a program, known as scope.
+    + (local variables): variable created inside a function, scope is limited to inside that function.
+    + (global variables): scope extends all throughout the file and can be accessed by functions.
+        - global statement must be used to change the value of a global variable inside a function.
+            -> def get_name:
+                global student_name
+        - Modification of mutable global variables such as list or dict containers does not require
+          a global statement if programmer is adding or removing elements from container.
+    -----------------------------------------------------------------------------------------------
+
+.......................................................................................................................
+
+TOPIC: Function Arguments
+
+    NOTES:
+    -----------------------------------------------------------------------------------------------
+    + Python uses pass_by_reference aka pass-by-object-reference:
+      When you call a function, the parameter name becomes a new local name that refers to the
+      same object you passed in.
+    + Whether changes "leak out" of the function depends on mutability:
+        - Immutable objects (int, float, str, tuple):
+            - can't change the original object in place.
+            - "Modifying" inside the function really means rebinding the parameter to a new object.
+            - caller's value stays the same.
+        - Mutable objects (list, dict, set)
+            - function can change the object in place.
+            - those changes show up outside the function if other variables refer to that same object.
+            - examples: list.append(), list.sort(), editing dict[]...
+    + Protecting a mutable object from being changed by a function, pass a copy:
+        -> my_func(my_list[:]) (slice copy)
+    -----------------------------------------------------------------------------------------------
+
+.......................................................................................................................
+
+TOPIC: Keyword Arguments
+
+    NOTES:
+    -----------------------------------------------------------------------------------------------
+    function definition -> def student_info (name, age, grade, gpa):
+
+    function call with keyword ->   student_info (age=28, name="Armando, gpa=4.0, grade="A"
+    -----------------------------------------------------------------------------------------------
+
+    Default parameter values ->
+        + function can have a default parameter value for one or more parameters, meaning that a function
+          can optionally omit an argument, and default parameter value will be subbed for corresponding
+          omitted argument.
+
+        + If parameter does not have a default value, failing to provide an argument causes error.
+
+        Valid function calls with default parameter values.
+        ----------------------------------------------------------------------------------
+            print_date(30, 7, 2012, 0)   # Defaults: none
+            print_date(30, 7, 2012)      # Defaults:                            style=0
+            print_date(30, 7)            # Defaults:                 year=2000, style=0
+            print_date(30)               # Defaults:        month=1, year=2000, style=0
+            print_date()                 # Defaults: day=1, month=1, year=2000, style=0
+        ----------------------------------------------------------------------------------
+
+.......................................................................................................................
+
+TOPIC: Arbitrary Arguments
+
+    Obj: Sometimes a programmer doesn't know how many arguments a function requires.
+
+    NOTES:
+    -----------------------------------------------------------------------------------------------
+    [*args]: collects optional positional parameters into an arbitrary argument list tuple.
+
+        def print_student (name, age, *args):
+            print(f"{name} is {age}", end=" ")
+            ...........................................     """
+            if len(args) > 0:                                This block checks other arguments
+                print("and is graduating in ", end=" ")      in the function definition.
+            for extra in args:                               If there is more, it will output
+                print(extra, end=" ")                        the additional arguments.
+            ...........................................     """
+            print("")
+
+        print_student("Armando", 28)                |   Armando is 28
+        print_student("Armando", 28, 2027)          |   Armando is 28 and is graduating in 2027
+    -----------------------------------------------------------------------------------------------
+
+    NOTES:
+    -----------------------------------------------------------------------------------------------
+    [**kwargs] (keyword arguments): creates a dictionary containing "extra" arguments not defined
+    in the function definition.
+
+        def print_student (name, age, **kwargs):
+            print(f"{name} is {age}")
+            ...........................................     """
+            for category, extra in kwargs.items():           This block checks for additional arguments
+                print(f"    {category}: {extra}")            within the function definition that was
+            print()                                          passed and creates a new dictionary container.
+            ...........................................     """
+
+        print_student("Armando", 28, Graduation="2027")   |   Armando is 28
+                                                          |      Graduation: 2027
+    -----------------------------------------------------------------------------------------------
+
+    Additional info:
+        + The * and ** in *args and **kwargs are important symbols.
+            - Using agrs and kwargs is standard practice but any valid identifier works.
+        + One or both *args and **kwargs can be used but they must come last in function definition.
+            - They have to be in this order as well.
+
+.......................................................................................................................
+
+TOPIC: Multiple Function Outputs
+
+    Obj: Function should produce multiple output values. Despite a function is limited to returning only
+    one value, a workaround is to package the multiple outputs into a single container, commonly a tuple,
+    and return that container.
+
+    Example:
+    -----------------------------------------------------------------------------------------------
+    student_scores = [75, 84, 66, 99, 51, 65]
+
+    def get_grade_stats(scores):
+        mean = sum(scores)/len(scores)       -> This calculates the mean
+
+        tmp = 0                              -> This calculates standard deviation
+        for score in scores:
+            tmp += (score - mean )**2
+        std_dev = (tmp/len(scores))**0.5
+
+        return mean, std_dev        -> Package and return (average and standard deviation in a tuple)
+
+    # Unpack tuple
+    average, standard_deviation = get_grade_stats(student_scores)
+
+    print(f"Average score: {average}")                  | Average score: 73.33333333
+    print(f"Standard deviation: {standard_deviation}")  | Standard deviation: 15.260697
+    -----------------------------------------------------------------------------------------------
+
+    Additional info:
+        + tuple doesn't require parenthesis around the contents, as the comma indicates a tuple should
+        be created.
+                                           return mean, std_dev
+
+        + Equivalent statement would have been.
+                                           return (mean, std_dev)
+
+        + The outputs could also have been returned in a list.
+                                           return [mean, std_dev]
+
+        + UNPACKING is an operation that allows a statement to perform multiple assignments to variables
+        in a tuple or list.
