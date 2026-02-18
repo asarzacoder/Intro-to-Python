@@ -1,0 +1,42 @@
+"""
+PROJECT: Command Line To-Do List Manager
+
+Objective: Create a terminal app that lets user manage a to-do list using a menu.
+           Basic CRUD (create, read, update, delete) in mini form.
+
+Skill testing:                              | Topics:
+    + Breaking problems into functions.     | + Intro To Python
+    + Use loops to keep program running.    | + Variables and Expressions
+    + Validate input with branching.        | + Types
+    + Manage list (add, remove, update).    | + Branching
+    + Keep code readable.                   | + Loops
+                                            | + Functions
+
+Requirements:
+    Functions -
+        + Show menu
+            - Prints menu options
+        + Add task
+            - Ask user for task and adds in the list.
+        + View task
+            - Print all tasks with numbers starting at 1.
+            - If empty, print "no task"
+        + Mark task as complete
+            - tasks -> list of task strings.
+            - complete -> list of booleans same length as task.
+                - ask for task number
+                - validate in range
+                - set done[index] = true
+        + Delete task
+            - ask for task number
+            - validate
+            - remove from both lists
+        + Quit
+
+Output Example:
+                        --- TO DO ---
+                    1. Apply to internships
+                    2. Finish Python chapter 6 [X]
+                    3. Update resume
+
+"""
