@@ -1,23 +1,5 @@
 # Mini Project: Number Guessing Game (with stats)
 
-"""
-Description: CLI game where computer picks a secret number, the user keeps guessing until they get it,
-while tracking stats.
-
-Requirements:
-    + Secret number
-    + Loops for guessing until correct
-    + Feedbacks for user inputs:
-        - Guessing too low
-        - Guessing too high
-    + Tacking attempts
-    + Input validation
-        - Must be between (1 - 100)
-Additional(s):
-    + Limited attempts
-    + Track best attempt / score
-"""
-
 import random   # import for random generating number
 
 print("Welcome to the Number Guessing Game!")

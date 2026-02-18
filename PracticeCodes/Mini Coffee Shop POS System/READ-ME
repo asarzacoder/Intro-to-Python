@@ -1,0 +1,45 @@
+"""
+Goals:
+    + Create a terminal program that acts like a tiny checkout system (think: small store / cafe).
+
+Functions:
+    + Ask users for item information
+    + Applies discounts
+    + Calculates totals
+    + Prints a clean receipt
+
+Core Requirements:
+    Inputs (strings and numbers) ->
+        + Customer name
+        + Item name
+        + Item price
+        + Quantity
+        + Member status (Y/N)
+        + Coupon code
+
+Computations:
+    + Subtotal: price * quantity
+    + Tax (rate = 8.75 %) = subtotal * tax_rate
+    + Total before discount = subtotal + tax
+    + Discounts:
+        - Member + subtotal > 50 -> 15% off subtotal
+        - Coupon code (SAVE5) -> $5 off subtotal
+            ' subtotal should not go below 0 '
+
+RECEIPT:
+            --- RECEIPT ---
+        Customer: Armando (A)
+        Item: Iced Coffee
+        Price: $4.25
+        Qty: 3
+        Subtotal: $12.75
+        Tax (8.75%): $1.12
+        Discount: -$0.00
+        Total: $13.87
+
+Included subjects:
+   + Intro to Python
+   + Variables and Expressions
+   + Types
+   + Branching
+"""
