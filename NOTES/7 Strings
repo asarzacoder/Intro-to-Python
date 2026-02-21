@@ -1,0 +1,291 @@
+                                                    STRINGS
+.......................................................................................................................
+TOPIC: String Slicing
+
+    - Reading more than one character at a time, multiple consecutive chars can be read using slice notation -
+
+    slice notation -> my_string[start:end]
+        + Creates new string whose value contains the characters of my_string from indices (start) to (end - 1)
+        ---------------------------------
+        my_string = "Armando"
+
+        Name = my_string[0:3] -> "Arm"
+        ---------------------------------
+    -----------------------------------------------------------------------------------------------
+    Notes:
+        - Other sequence types like lists and tuples also support slice notation.
+
+        - Last character of slice:
+            + One location before the specified end.
+            + Retrieve last character, an end index greater than the length of the string can be used.
+            + Negative numbers can be used to specify an index relative to the end of the string.
+                ---------------------------------
+                my_string = "Armando"
+
+                Name = my_string[0:-2] -> "Arman"
+                ---------------------------------
+
+        - Python interpreter creates a new string object for the slice.
+            + Creating a slice of the string and then changing the value of that string does not
+              change the value of the slice object.
+
+        - Omitting a start index my_str[:3] yields chars from indices (0) to (end - 1)
+        - Omitting a end index my_str[4:] yields chars from indices start to end of the string.
+
+        - Slice stride:
+            + Provides a 3rd argument known as stride.
+            + Determines how much to increment the index after reading each element.
+            + Stride defaults to 1 if not specified.
+                ---------------------------------
+                numbers = "0123456789"
+
+                numbers[::] -> 0123456789
+                numbers[::2] -> 02468
+                numbers[1:9:3] -> 147
+                ---------------------------------
+
+        - Connecting slices:
+            name = my_name[:1] + my_name[-1:] -> Ao
+
+Common Slicing Operations:
+ my_str = "http://en.wikipedia.org/wiki/Nasa/"
+
+ Syntax	       | Result	                            | Description
+ ..........................................................................................................................
+ my_str[10:19] | wikipedia	                        | Returns the characters in indices 10-18.
+ ..........................................................................................................................
+ my_str[10:-5] | wikipedia.org/wiki/	            | Returns the characters in indices 10-28.
+ ..........................................................................................................................
+ my_str[8:]	   | n.wikipedia.org/wiki/Nasa/	        | Returns all characters from index 8 until the end of the string.
+ ..........................................................................................................................
+ my_str[:23]   | http://en.wikipedia.org	        | Returns every character up to index 23, but not including my_str[23].
+ ..........................................................................................................................
+ my_str[:-1]   | http://en.wikipedia.org/wiki/Nasa	| Returns all but the last character.
+
+.......................................................................................................................
+TOPIC: Advanced String Formatting
+
+    - A program must display formatted output beyond the ability of basic print usage such as print(x) -
+
+    --------------------------------------------------------------------------------------------
+    Field Width: defines the minimum number of characters that must be inserted into the string.
+        + format: print(f"{'Player Name': 16}{'Goals':8}")
+            - String are left aligned by default; field width includes spaces after the string.
+            - Numbers are right aligned by default; field width includes spaces before the number.
+
+                    Player Name      Goals    Games Played     Goals Per Game
+                    ------------------------------------------------------------
+                    Sadio Mane         22          36               0.61
+                    Mohamed Salah      22          38               0.58
+                    Sergio Aguero      21          33               0.64
+                    Jamie Vardy        18          34               0.53
+                    Gabriel Jesus       7          29               0.24
+                    ------------------------------------------------------------
+    --------------------------------------------------------------------------------------------
+    Aligning Character: determines how a value should be aligned within the width of the field.
+        + set in a format specification by adding special characters before the field width integer:
+            left-aligned: <
+            right-aligned: >
+            centered: ^
+    -------------------------------------------------------------------------------------------------------------
+            Alignment Type          |           Code                      |           Output
+    -------------------------------------------------------------------------------------------------------------
+            Left-Aligned            | f"{'Player Name':<16}{'Goals':<8}"  | Player_Name_____Goals__
+    -------------------------------------------------------------------------------------------------------------
+            Right-Aligned           | f"{'Player Name':>16}{'Goals':>8}"  | _____Player_Name__Goals
+    -------------------------------------------------------------------------------------------------------------
+              Centered              | f"{'Player Name':^16}{'Goals':^8}"  | __Player_Name___Goals___
+    -------------------------------------------------------------------------------------------------------------
+
+    --------------------------------------------------------------------------------------------
+    Fill: used to pad a replacement field when the inserted string is smaller than the field width.
+        + The default filled character is an empty space " ".
+        + Programmer may define a different fill character in a format specification by placing the
+          different fill character before the alignment character.
+
+                            Format specification | Value of score | Output
+                            ----------------------------------------------
+                            {score:}             |       9        | 9___
+                            ----------------------------------------------
+                            {score:4}            |       9        | ___9
+                            ----------------------------------------------
+                            {score:0>4}          |       9        | 0009
+                            ----------------------------------------------
+                            {score:0>4}          |       18       | 0018
+                            ----------------------------------------------
+                            {score:0^4}          |       18       | 0180
+                            ----------------------------------------------
+    --------------------------------------------------------------------------------------------
+    Floating-point precision: indicates how many digits should be included in the output.
+        + format: f"1.725:.1f}" -> 1.7
+        + If the specified precision is greater than the number of digits available, trailing 0s are
+          appended.
+        + If the specified precision is less than the existing precision in the given number, then
+          the number is rounded.
+.......................................................................................................................
+TOPIC: String Methods
+
+    - String objects have many useful methods to do things like: -
+        + replacing characters
+        + converting to lowercase
+        + capitalizing the first character
+        + more!
+    - Strings are immutable: once created strings can not be changed.
+    --------------------------------------------------------------------------------------------
+    Finding and Replacing
+        + to update a string variable, a new string object must be created and bound to the variable name,
+          replacing the old object.
+        + the replace string method provides a simple way to create a new string by replacing all occurrences
+          of a substring with a new substring.
+
+        replace(old, new)
+          + returns a copy of the string with all occurrences of the substring (old)
+              by the new string (new).
+
+        replace(old, new, count)
+          + same as above, except replace(old, new, count) only replaces the first count occurrences of old.
+
+        phrase = "My name is Armando"
+
+        phrase = phrase.replace("Armando", "Lena")
+
+        Output: My name is Lena
+    --------------------------------------------------------------------------------------------
+    Finding position of character / substring
+
+        find(x) -
+            returns the index of the first occurrence of item x in the string, otherwise, find(x) returns -1
+                + x may be a string variable or string literal.
+
+            my_name = "Armando" |       my_name.find('A') returns 0
+                                |       my_name.find('Arm') returns 0
+            my_name = "ArmandoArm" |    my_name.find('Arm') returns 0, first occurrence only!
+
+        find(x, start) -
+            same as find(x) but begins search at index start.
+
+            my_name = "Armando" |       my_name.find("a", 2) returns 3
+
+        find(x, start, end) -
+            same as find(x, start) but stops search at index (end - 1)
+
+            my_name = "ArmandoLena" |   my_name.find("a", 4, len(my_name) - 1) returns 11
+
+        rfind(x) -
+            same as find(x) but searches the string in reverse, returning the last occurrence of the string.
+
+        count(x) -
+            returns the number of times x occurs in the string.
+
+    NOTE:
+        - find(x) and rfind(x) are useful only for cases where programmer needs to know the exact location
+          of the character or substring in the string.
+
+        - (in membership) operator should be used to check if a character or substring is contained in the string.
+
+            if "batman" is superhero_name:
+               # statements to execute if superhero_name contains "batman" in any position.
+    --------------------------------------------------------------------------------------------
+    Comparing Strings
+
+            Example	            |    Expression result	 |                           Why?
+    -------------------------------------------------------------------------------------------------
+    "Hello" == "Hello"	        |          True	         |  The strings are exactly identical values
+    -------------------------------------------------------------------------------------------------
+    "Hello" == "Hello!"	        |          False	     |  The left hand string does not end with "!".
+    -------------------------------------------------------------------------------------------------
+    "Yankee Sierra" > "Amy Wise"|	       True	         |  The first character of the left side "Y" is "greater than"
+                                |                        |  (in ASCII value) the first character of the right side "A".
+    -------------------------------------------------------------------------------------------------
+    "Yankee Sierra"             |	       False	     |  The characters of both sides match until the second word.
+             >                  |                        | The first character of the second word on the left "S" is not
+    "Yankee Zulu"               |                        | "greater than" (in ASCII value) the first character on the right side "Z".
+    -------------------------------------------------------------------------------------------------
+    "seph" in "Joseph"      	|           True	     | The substring "seph" can be found starting at the 3rd position of "Joseph".
+    -------------------------------------------------------------------------------------------------
+    "jo" in "Joseph"	        |           False	     | "jo" (with a lowercase "j") is not in "Joseph" (with an uppercase "J").
+
+    Note:
+        + If one string is shorter than the other when comparing less than or equal, the shorter string is
+          considered less than the longer string.
+
+    Membership operators (in, not in)
+        + provide a simple method for detecting whether a specific substring exists in the string.
+            - the argument to the right of the operator is examined for the existence of the argument on the left.
+
+    Identity operators (is, is not)
+        + determine whether the two arguments are bound to the same object.
+            - common error is to use identity operator in place of an equality operator: name is "Armando Sarza"
+
+    OTHER methods to check a string value that returns TRUE or FALSE Boolean value:
+        -------------------------------------------------------------------------------------------------
+        isalnum()       | True if all characters in the string are lowercase or uppercase, or numbers 0-9
+        -------------------------------------------------------------------------------------------------
+        isdigit()       | True if all characters are the numbers 0-9
+        -------------------------------------------------------------------------------------------------
+        islower()       | True if all cased characters are lowercase letters
+        -------------------------------------------------------------------------------------------------
+        isupper()       | True if all cased characters are uppercase letters
+        -------------------------------------------------------------------------------------------------
+        isspace()       | True if all characters are whitespace
+        -------------------------------------------------------------------------------------------------
+        startswith(x)   | True if the string starts with x
+        -------------------------------------------------------------------------------------------------
+        endswith(x)     | True if the string ends with x
+
+    --------------------------------------------------------------------------------------------
+    Creating new strings from a string
+
+    - Programmer often transform two strings into similar formats to perform a comparison. -
+    -------------------------------------------------------------------------------------------------
+    capitalize()    | returns a copy of the string with the first char capitalized and the rest lowercased.
+    -------------------------------------------------------------------------------------------------
+    lower()         | returns a copy of the string with all characters lowercased.
+    -------------------------------------------------------------------------------------------------
+    upper()         | returns a copy of the string with all characters uppercased.
+    -------------------------------------------------------------------------------------------------
+    strip()         | returns a copy of the string with leading and trailing whitespace removed.
+    -------------------------------------------------------------------------------------------------
+    title()         | returns a copy of the string as a title, with first letters of words capitalized.
+.......................................................................................................................
+TOPIC: Splitting and Joining Strings
+    Purpose: breaking a large string down into the comprising substrings.
+-----------------
+split() method -
+-----------------
+    + splits a string into a LIST of tokens.
+        - each token is a substring that forms a part of a larger string.
+        - separator: is a character chosen by programmer that indicates where to split the string into tokens.
+            ex. "My name is Armando".split() -> ["My", "name", "is", "Armando"]
+                "My, name, is, Lena".split(",") -> ["My", "name", "is", "Lena"]
+                my_list = input().split()
+    + if the split string starts or ends with the separator, or if two consecutive separator exists, then
+      the resulting list will contain an empty string for each such occurrence.
+    + if the separator is omitted from split(), thus splitting the string wherever whitespace occurs,
+      then no empty strings are generated.
+    + Additional: inserting into the list created
+        list_created.insert(index, "word")
+
+-----------------
+join() method -
+-----------------
+    + performs the inverse operation of split() by joining a list of strings together to create a single string.
+        ex. user_name = ["My", "name", "is", "Armando"] |   Output:
+            separator = "+"                             |       My+name+is+Armando
+            name = separator.join(user_name)            |
+            --------------------------------------------
+        ex. intro_message = "+".join(user_name)
+    + Useful application of the join() method is to build a new string without separators.
+    + join() vs loops:
+        - join() is much simpler approach that uses less code and is easier to read.
+
+
+
+
+
+
+
+
+
+
+
