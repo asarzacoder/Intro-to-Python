@@ -1,0 +1,61 @@
+LOG ANALYZER PROJECT (CLI-Command Line Interface)
+.......................................................................................................................
+Programming Skills:
+    - Variables
+    - Types
+    - Branching
+    - Loops
+    - Functions
+    - Strings
+.......................................................................................................................
+Description:
+    + Program that reads log lines from the user (one per line), until type DONE, then prints summary report.
+
+    LOG FORMAT (each line):
+
+        LEVEL   |   component   | message
+
+    Example Entry from user:
+
+        INFO    |   auth    |   login success
+        ERROR   |   db      |   Connection failed
+        WARN    |   api     |   slow response
+.......................................................................................................................
+Requirements: Implement functions
+    get_logs():
+        + use loops to keep asking for lines
+        + stops when user types exactly: DONE
+        + returns a list of strings (log lines)
+
+    parse_log(line):
+        + input: one log line string
+        + Output: level | component | message
+        + Split using | character
+        + trim extra spaces around each piece
+        + if the line is invalid ( doesn't have 3 parts), return something that lets caller detect invalid.
+
+    build_report(logs)
+        + Use loops to compute:
+            - total valid logs
+            - invalid line count
+            - counts of each LEVEL: INFO/WARN/ERROR (at least these 3)
+            - most common component (like auth, db, api)
+        + return results (multiple return values or store in variables and print in this function)
+
+    print_report()
+.......................................................................................................................
+Cases to handle:
+    + Empty input line -> treat as invalid
+    + line missing one of the | sections -> invalid
+    + level typed as error or Error -> treat as ERROR
+.......................................................................................................................
+Output:
+
+    --- LOG REPORT ---          |   INPUT:
+    Valid lines:    6           |       INFO  | auth | login success
+    Invalid lines:  2           |       ERROR |  db  | connection failed
+    INFO:           2           |       WARN  |  api | slow response
+    WARN:           1           |       ERROR |  db  | timeout
+    ERROR:          3           |       bad line
+    Common comp:    db          |       INFO  | auth | logout
+
