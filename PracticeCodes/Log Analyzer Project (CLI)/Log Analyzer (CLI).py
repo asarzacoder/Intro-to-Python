@@ -1,114 +1,102 @@
 # Mini project: Log Analyzer (CLI)
+def print_report(invalid, valid, info, warning, error, comp):
+    print("--- LOG REPORT ---")
+    print(f"{'Valid lines:':<16}{valid:<5}")
+    print(f"{'Invalid lines:':<16}{invalid:<5}")
+    print(f"{'INFO:':<16}{info:<5}")
+    print(f"{'WARNING:':<16}{warning:<5}")
+    print(f"{'ERROR:':<16}{error:<5}")
+    print(f"{'Common comp:':<16}{comp:<5}")
 
-def print_report(valid_count, invalid_count, info_count, warn_count, error_count, top_component):
-    print("----- LOG REPORT -----")
-    print("Valid lines:", valid_count)
-    print("Invalid lines:", invalid_count)
-    print("INFO:", info_count)
-    print("WARN:", warn_count)
-    print("ERROR:", error_count)
+#-----------------------------------------------
+def most_common_comp(log_list, name_comp, name_comp_counter):
 
-    if top_component == "":
-        print("Most common component: None")
-    else:
-        print("Most common component:", top_component)
-
-    print("----------------------")
-
-def most_common_component(components, component_counts):
-    if len(components) == 0:
-        return ""
-
-    max_index = 0
-    for i in range(1, len(component_counts)):
-        if component_counts[i] > component_counts[max_index]:
-            max_index = i
-    return components[max_index]
-
-def update_component_counts(component, components, component_counts):
-    found = False
-    for i in range(len(components)):
-        if components[i] == component:
-            component_counts[i] += 1
-            found = True
-    if not found:
-        components.append(component)
-        component_counts.append(1)
-
-def build_report(logs):
-    valid_count = 0
-    invalid_count = 0
-    info_count = 0
-    warn_count = 0
-    error_count = 0
-
-    components = []
-    component_counts = []
-
-    for input_line in logs:
-        level, component, message = parse_log(input_line)
-
-        if level == "INVALID":
-            invalid_count += 1
+    for index in range(len(log_list)):
+        line_read = log_list[index].split("|")
+        if len(line_read) != 3:
+            continue
         else:
-            valid_count += 1
+            curr_comp = line_read[1].strip()
+            if curr_comp not in name_comp:
+                name_comp.append(curr_comp)
+                name_comp_counter.append(1)
+            else:
+                find_comp = name_comp.index(curr_comp)
+                name_comp_counter[find_comp] = name_comp_counter[find_comp] + 1
 
-            if level == "INFO":
-                info_count += 1
-            elif level == "WARN":
-                warn_count += 1
-            elif level == "ERROR":
-                error_count += 1
+    most_counted = 0
+    for i in range(1, len(name_comp_counter)):
+        if name_comp_counter[i] > name_comp_counter[most_counted]:
+            most_counted = i
 
-            update_component_counts(component, components, component_counts)
+    return name_comp[most_counted]
+#-----------------------------------------------
+def parse_log_build_reports(curr_element):
 
-    top_component = most_common_component(components, component_counts)
+    invalid = 0
+    valid = 0
+    INFO = 0
+    WARNING = 0
+    ERROR = 0
 
-    return valid_count, invalid_count, info_count, warn_count, error_count, top_component
+    # Check length of curr_element if < 3
+    if len(curr_element) != 3:
+        invalid += 1
+    else:
+        valid += 1
+        level = curr_element[0].strip().upper()
 
-def parse_log(lines):
-    parts = lines.split("|")
+        if level == "INFO":
+            INFO += 1
+        elif level == "WARNING":
+            WARNING += 1
+        elif level == "ERROR":
+            ERROR += 1
 
-    # Checks length of single line input
-    if len(parts) != 3:
-        return "INVALID", "", ""
+    return invalid, valid, INFO, WARNING, ERROR
 
-    # Grab each parts of line and insert into variables
-    level = parts[0].strip()
-    component = parts[1].strip()
-    message = parts[2].strip()
-
-    # invalid if any part is empty
-    if level == "" or component == "" or message == "":
-        return "INVALID", "", ""
-
-    # CAPITALIZED LEVEL
-    level = level.upper()
-
-    return level, component, message
-
-def get_logs():
-    log_lines = []
-
+#-----------------------------------------------
+def get_logs(log_list):
     print("Enter log lines in this format:")
-    print("LEVEL | component | message")
+    print("LEVEL | component | notes")
     print("Type DONE to finish")
-    print("-" * 40)
-    user_input = input("Log> ")
+    log = input("Log> ")
 
-    while user_input.upper() != "DONE":
-        log_lines.append(user_input)
-        user_input = input("Log> ")
+    # Retrieve log until user inputs DONE
+    while log.upper() != "DONE":
+        log_list.append(log)
+        log = input("Log> ")
 
-    return log_lines
+    return log_list
+#-----------------------------------------------
+# --- MAIN ---
+log_data = []   # List to contain user logs
+components = [] # List to contain components
+comp_counts = [] # Component common counter
 
-# main
+invalid = 0
+valid = 0
+INFO = 0
+WARNING = 0
+ERROR = 0
+common_comp = ""
 
-logs = get_logs()  # returns list of user line input
-valid_count, invalid_count, info_count, warn_count, error_count, top_component = build_report(logs)
-print_report(valid_count, invalid_count, info_count, warn_count, error_count, top_component)
+# Get user logs
+get_logs(log_data)
 
+# Get each line of log_data and split
+for line in range(len(log_data)):
+    curr_line = log_data[line].split("|")
+    inv, val, info, warning, error = parse_log_build_reports(curr_line)
 
+    invalid += inv
+    valid += val
+    INFO += info
+    WARNING += warning
+    ERROR += error
 
+found_comp = most_common_comp(log_data, components, comp_counts)
+
+print_report(invalid, valid, INFO, WARNING, ERROR, found_comp)
 
 

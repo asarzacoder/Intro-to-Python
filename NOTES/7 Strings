@@ -117,7 +117,7 @@ TOPIC: Advanced String Formatting
                             ----------------------------------------------
     --------------------------------------------------------------------------------------------
     Floating-point precision: indicates how many digits should be included in the output.
-        + format: f"1.725:.1f}" -> 1.7
+        + format: f"{1.725:.1f}" -> 1.7
         + If the specified precision is greater than the number of digits available, trailing 0s are
           appended.
         + If the specified precision is less than the existing precision in the given number, then

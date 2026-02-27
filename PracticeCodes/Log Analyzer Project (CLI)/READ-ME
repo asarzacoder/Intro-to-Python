@@ -52,10 +52,10 @@ Cases to handle:
 Output:
 
     --- LOG REPORT ---          |   INPUT:
-    Valid lines:    6           |       INFO  | auth | login success
-    Invalid lines:  2           |       ERROR |  db  | connection failed
+    Valid lines:    5           |       INFO  | auth | login success
+    Invalid lines:  1           |       ERROR |  db  | connection failed
     INFO:           2           |       WARN  |  api | slow response
     WARN:           1           |       ERROR |  db  | timeout
-    ERROR:          3           |       bad line
+    ERROR:          2           |       bad line
     Common comp:    db          |       INFO  | auth | logout
 
