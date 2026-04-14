@@ -1,0 +1,64 @@
+***
+Information: Tiny "firmware support tool" that decodes sensor packets (like UART/I2C debug logs),
+             validates them, and prints health stats.
+-----------------------------------------------------------------------------------------------------------------------
+Input format: (One packet per line)
+              Each line is a "packet" -> ID, TEMP_C, VOLT_V, STATUS
+
+              Examples:
+                A12, 36.5, 3.29, OK
+                A12, 37.1, 3.10, LOW_BATT
+                B07, 85.0, 3.40, OVERHEAT
+                DONE
+-----------------------------------------------------------------------------------------------------------------------
+Rules:
+    ID -> 3 Characters: first is a letter, next two are digits (ex. A12)
+    TEMP_C -> float
+    VOLT_V -> float
+    STATUS -> options (OK, LOW_BATT, OVERHEAT, SENSOR_FAIL)
+-----------------------------------------------------------------------------------------------------------------------
+Firmware validation:
+    Packet INVALID if ->
+        + Doesn't have exactly 4 fields
+        + ID format wrong
+        + TEMP_C not in range [-40.0, 125.0]
+        + VOLT_V not in range [2.5, 4.2]
+        + STATUS not one of the allowed strings
+-----------------------------------------------------------------------------------------------------------------------
+OUTPUT:
+    1. Total packets
+    2. Valid packets
+    3. Invalid packets
+    4. Count by STATUS (use a dictionary)
+    5. Per-device stats (use nested dictionary)
+        For each ID, print ->
+        a. number of valid packets
+        b. average TEMP_C
+        c. minimum VOLT_V seen
+
+    Example report:
+        -- SENSOR REPORT --
+        Total: 8
+        Valid: 6
+        Invalid: 2
+
+        Status counts:
+        OK: 3
+        LOW_BATT: 2
+        OVERHEAT: 1
+        SENSOR_FAIL: 0
+
+        Per-device:
+        A12 -> count=3 avg_temp=36.9 min_volt=3.10
+        B07 -> count=1 avg_temp=85.0 min_volt=3.40
+-----------------------------------------------------------------------------------------------------------------------
+Required functions:
+    + get_packets() -> returns list of raw lines until DONE
+
+    + parse_packet(line) ->
+        returns either a dictionary {"id": "A12", "temp": 36.5, "volt": 3.29, "status": "OK"}
+        or returns None for invalid
+
+    + update_stats(packet, stats) -> update dictionaries / counters
+
+    + print_report(stats)
